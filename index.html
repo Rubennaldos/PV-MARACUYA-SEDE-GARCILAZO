@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MARACUYA TIENDAS SALUDABLES - Punto de Venta</title>
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+  <!-- QR code generator -->
+  <script src="https://cdn.jsdelivr.net/npm/qrious@4.0.2/dist/qrious.min.js"></script>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+  <div class="container">
+    <h1 class="empresa">MARACUYA TIENDAS SALUDABLES E.I.R.L</h1>
+    <p class="empresa-info">RUC: 20650404517 &mdash; Calle Garcilazo de la Vega 121, Salamanca, Ate, Lima, Perú</p>
+
+    <div class="panel">
+      <div class="flex">
+        <div>
+          <label for="tipoComprobante">Tipo de comprobante:</label>
+          <select id="tipoComprobante">
+            <option value="boleta">Boleta</option>
+            <option value="nota">Nota de Venta</option>
+          </select>
+        </div>
+        <div>
+          <label for="formatoImpresion">Formato:</label>
+          <select id="formatoImpresion">
+            <option value="a4">A4</option>
+            <option value="ticket">Ticket 80mm</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="flex">
+        <div>
+          <label>Nombre Cliente:</label>
+          <input id="clienteNombre" type="text" placeholder="Nombre completo"/>
+        </div>
+        <div>
+          <label>DNI / RUC:</label>
+          <input id="clienteDoc" type="text" placeholder="DNI o RUC"/>
+        </div>
+        <div>
+          <label>Dirección:</label>
+          <input id="clienteDir" type="text" placeholder="Dirección"/>
+        </div>
+      </div>
+
+      <div class="productos-panel">
+        <div class="flex">
+          <input type="text" id="buscarProducto" placeholder="Buscar producto..." autocomplete="off" />
+          <button id="abrirModalProducto">Agregar producto</button>
+        </div>
+        <div id="listaBusqueda"></div>
+      </div>
+      
+      <div id="ventaProductos">
+        <table>
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Código</th>
+              <th>Precio (S/)</th>
+              <th>Cantidad</th>
+              <th>Total</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="tbodyVenta"></tbody>
+        </table>
+        <div class="flex total-venta">
+          <span>IGV 18% incluido: <b id="ventaIGV">S/ 0.00</b></span>
+          <span>Total Venta: <b id="ventaTotal">S/ 0.00</b></span>
+        </div>
+      </div>
+
+      <div class="acciones">
+        <button id="guardarComprobante">Guardar Comprobante</button>
+        <button id="imprimirComprobante">Imprimir / PDF</button>
+        <button id="verComprobantes">Ver Comprobantes Anteriores</button>
+      </div>
+    </div>
+
+    <!-- Plantilla de boleta/nota para impresión/PDF -->
+    <div id="comprobantePreview" style="display:none"></div>
+
+<!-- Modal para agregar o editar producto -->
+<div id="modalProducto" class="modal">
+  <div class="modal-content">
+    <span id="cerrarModalProducto" class="close">&times;</span>
+    <h2 id="tituloModalProducto">Agregar nuevo producto</h2>
+    <label>Nombre:</label>
+    <input type="text" id="nuevoProductoNombre"/>
+    <label>Código de Barras:</label>
+    <input type="text" id="nuevoProductoCodigo"/>
+    <label>Precio Unitario:</label>
+    <input type="number" step="0.01" id="nuevoProductoPrecio"/>
+    <div style="margin-top: 10px;">
+      <button id="guardarProductoNuevo" style="background:#2ac77d;color:white;">Guardar Producto</button>
+      <button id="guardarCambiosProducto" style="display:none;background:#2264bc;color:white;">Guardar Cambios</button>
+      <button id="cancelarProducto" style="background:#eee;color:#222;">Cancelar</button>
+    </div>
+    <div id="msgProductoNuevo" style="margin-top:7px;"></div>
+  </div>
+</div>
+
+    <!-- Modal para ver comprobantes anteriores -->
+    <div id="modalComprobantes" class="modal">
+      <div class="modal-content">
+        <span id="cerrarModalComprobantes" class="close">&times;</span>
+        <h2>Comprobantes Guardados</h2>
+        <div id="comprobantesList"></div>
+      </div>
+    </div>
+  </div>
+  <script src="main.js"></script>
+</body>
+</html>
