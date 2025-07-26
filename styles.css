@@ -1,0 +1,227 @@
+body {
+  background: #f9fafb;
+  font-family: 'Segoe UI', sans-serif;
+  margin: 0;
+}
+.container {
+  max-width: 950px;
+  margin: 28px auto 20px auto;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 0 18px #0001;
+  padding: 32px 24px 40px 24px;
+}
+h1.empresa {
+  margin-top: 0;
+  margin-bottom: 8px;
+  font-size: 2.1em;
+  letter-spacing: 1px;
+  color: #22bb77;
+}
+.empresa-info {
+  margin-bottom: 20px;
+  font-size: 1em;
+  color: #555;
+}
+.panel {
+  margin-top: 12px;
+}
+.flex {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 18px;
+  flex-wrap: wrap;
+}
+.flex > div {
+  flex: 1;
+  min-width: 180px;
+}
+label {
+  font-size: 0.98em;
+  color: #111a;
+  font-weight: 500;
+  display: block;
+  margin-bottom: 2px;
+}
+input, select, button {
+  font-size: 1em;
+  padding: 7px 9px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  outline: none;
+  margin-bottom: 2px;
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+}
+input[type="text"], input[type="number"], select {
+  width: 100%;
+  box-sizing: border-box;
+  background: #f4f4f8;
+}
+input:focus, select:focus {
+  border: 1.5px solid #2ac77d;
+}
+button {
+  background: #24cc85;
+  color: #fff;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  margin-right: 8px;
+  box-shadow: 0 1px 4px #2ac77d11;
+  transition: background 0.14s;
+}
+button:hover {
+  background: #198b5a;
+}
+.acciones {
+  text-align: right;
+  margin-top: 18px;
+}
+.productos-panel {
+  margin-bottom: 16px;
+}
+#buscarProducto {
+  width: 240px;
+}
+#abrirModalProducto {
+  background: #f8bc1a;
+  color: #222;
+}
+#abrirModalProducto:hover {
+  background: #dd9307;
+}
+#listaBusqueda {
+  position: absolute;
+  background: #fff;
+  box-shadow: 0 2px 8px #2221;
+  border-radius: 8px;
+  width: 240px;
+  max-height: 180px;
+  overflow-y: auto;
+  z-index: 5;
+  margin-top: 1px;
+}
+#listaBusqueda div {
+  padding: 7px 11px;
+  cursor: pointer;
+  border-bottom: 1px solid #eee;
+  font-size: 0.97em;
+}
+#listaBusqueda div:last-child {
+  border-bottom: none;
+}
+#listaBusqueda div:hover {
+  background: #f4f4f4;
+}
+#ventaProductos {
+  margin-top: 6px;
+}
+#ventaProductos table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fafafa;
+  border-radius: 11px;
+  overflow: hidden;
+  margin-bottom: 0;
+}
+#ventaProductos th, #ventaProductos td {
+  text-align: center;
+  padding: 8px 6px;
+  border-bottom: 1px solid #eee;
+}
+#ventaProductos th {
+  background: #f3f3f3;
+}
+#ventaProductos tr:last-child td {
+  border-bottom: none;
+}
+#ventaProductos input[type="number"] {
+  width: 65px;
+}
+#ventaProductos button {
+  background: #f14d4d;
+  color: #fff;
+  border-radius: 8px;
+  padding: 6px 9px;
+  font-size: 0.95em;
+}
+#ventaProductos button:hover {
+  background: #b2172c;
+}
+.total-venta {
+  justify-content: flex-end;
+  margin-top: 8px;
+  gap: 32px;
+  font-size: 1.05em;
+}
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 51;
+  left: 0; top: 0;
+  width: 100vw; height: 100vh;
+  background: #0004;
+  justify-content: center;
+  align-items: center;
+}
+.modal-content {
+  background: #fff;
+  border-radius: 16px;
+  padding: 30px 26px 22px 26px;
+  max-width: 380px;
+  width: 90vw;
+  box-shadow: 0 4px 30px #0003;
+  position: relative;
+}
+.close {
+  position: absolute;
+  top: 8px; right: 12px;
+  font-size: 2em;
+  color: #aaa;
+  cursor: pointer;
+}
+.close:hover { color: #198b5a; }
+#msgProductoNuevo {
+  color: #d02c0e;
+  font-size: 0.97em;
+  margin-top: 8px;
+}
+#comprobantePreview {
+  position: fixed;
+  left: 0; top: 0;
+  width: 100vw; height: 100vh;
+  background: #0007;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: auto;
+}
+#comprobantePreview .doc-preview {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 36px #0002;
+  padding: 38px 26px;
+  margin: 30px;
+  min-width: 300px;
+  max-width: 790px;
+}
+@media (max-width: 700px) {
+  .container {
+    max-width: 100vw;
+    padding: 7px 2px 20px 2px;
+  }
+  .modal-content, #comprobantePreview .doc-preview {
+    padding: 13px 7px;
+    min-width: 180px;
+  }
+  #ventaProductos th, #ventaProductos td {
+    padding: 5px 2px;
+    font-size: 0.91em;
+  }
+}
+::-webkit-scrollbar { width: 8px; background: #eee; }
+::-webkit-scrollbar-thumb { background: #22bb7737; border-radius: 5px;}
